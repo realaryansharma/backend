@@ -24,4 +24,5 @@ Static Files ->
 1. Create a folder "public"
 2. Append three folders in it images, stylesheet, javascripts
 3. Configure express Static
+    app.use(express.static('./public'))
 4. Understand the path
