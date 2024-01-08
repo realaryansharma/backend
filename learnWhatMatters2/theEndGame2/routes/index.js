@@ -6,7 +6,7 @@ const userModel = require("./users");
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index');
-});
+}); 
 
 router.get("/create", async function(req, res) {
   let userdata = await userModel.create({
@@ -23,7 +23,7 @@ router.get("/create", async function(req, res) {
 
 router.get("/find", async function(req, res) {
   
-  var regex = new RegExp("aryan", 'i');
+  var regex = new RegExp("aryan", 'i'); 
   // this will perform some operation upon "aryan", then upon search you will get all the values including those thich are
   // case sensitive and those which may have extra characters added to the word aryan...
   let user = await userModel.find({username: regex});

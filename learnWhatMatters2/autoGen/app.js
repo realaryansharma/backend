@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const passport = require('passport');
 
 var app = express();
 
@@ -22,6 +23,11 @@ app.use(session({
 // resave: Don't save those values that are resend, and are same as the ones present on the server
 // saveUnitialised: There will be some values that won't have any key, so you can let it save or not based upon this parameter
 // secret: Is the string based upon which your data on server is encrypted.
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(usersRouter.serializeUser());
+passport.deserializeUser(usersRouter.deserializeUser());
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,8 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/users', usersRouter);v
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
